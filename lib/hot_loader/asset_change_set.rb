@@ -8,7 +8,7 @@ module React
         def initialize(since:, path: ::Rails.root.join("app/assets/javascripts"))
           @since = since
           @path = path.to_s
-          asset_glob = path.to_s + "/**/*.js*"
+          asset_glob = path.to_s + "/**/*.{js,coffee}*"
           @changed_files = Dir.glob(asset_glob).select { |f| File.mtime(f) >= since }
           @changed_file_names = changed_files.map { |f| f.split("/").last }
           @changed_asset_contents = changed_files.map do |f|
